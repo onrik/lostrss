@@ -52,6 +52,7 @@ class LostfilmSpider(Spider):
             title=title,
             link="https://www.lostfilm.tv/browse.php?cat=%s" % id,
             description='',
+            lastBuildDate=datetime.now(),
             items=series
         )
 
