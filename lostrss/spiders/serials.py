@@ -18,13 +18,12 @@ class SerialsSpider(Spider):
 
         for a in sel.css('.shadow .bb a.bb_a'):
             name = ' '.join(a.css('::text').extract())
-            url = a.css('::attr(href)').extract()[0].strip()
-            id = url.split('=')[1].strip('_')
+            id = a.css('::attr(href)').extract()[0].split('=')[1].strip('_')
 
             serials.append({
                 'id': id,
                 'name': name,
-                'url': 'http://www.lostfilm.tv%s' % url,
+                'url': 'http://www.lostfilm.tv/browse.php?cat=%s' % id,
             })
 
         with open('README.md', 'w') as f:
