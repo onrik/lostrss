@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 import PyRSS2Gen
-from dateutil import parser
+from datetime import datetime
 from scrapy import Spider
 from scrapy.selector import Selector
 
@@ -160,10 +160,10 @@ class LostfilmSpider(Spider):
                 url = 'https://www.lostfilm.tv%s' % div.css('a::attr(href)')[1].extract().strip()
 
                 item = PyRSS2Gen.RSSItem(
-                    title = '%s %s %s' % (number, name_ru, name_en),
+                    title = '%s %s' % (name_ru, name_en),
                     link = url,
-                    description = '',
-                    pubDate = parser.parse(date)
+                    description = number,
+                    pubDate = datetime.strptime(date, '%d.%m.%Y %H:%M')
                 )
                 series.append(item)
 
