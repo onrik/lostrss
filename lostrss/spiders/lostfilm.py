@@ -57,5 +57,5 @@ class LostfilmSpider(Spider):
         )
 
         with open("rss/%s.xml" % id, "w") as f:
-            feed.write_xml(f)
+            feed.write_xml(f, encoding='utf-8')
             
